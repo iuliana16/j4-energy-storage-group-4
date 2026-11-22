@@ -31,7 +31,7 @@ title: Story 4 – Chemical / Power-to-X (green ammonia, Ny-Ålesund)
 
 *Tool:* Claude (Anthropic), accessed through the Claude app with web search, file handling and code execution, November 2026.
 
-*How it was used:* I chose the Power-to-X story, the Ny-Ålesund site and green ammonia, set the scope and the design assumptions, and questioned numbers I couldn't trace. Claude found sources, ran the sizing, cost and emissions calculations, drafted the slide text and talk script, and drew the schematic. I checked the work by asking where each number came from, having Claude re-check every source against its claim, and running my inputs through the group's verification agent.
+*How it was used:* Claude found potential sources, ran the potential sizing, cost and emissions calculations, drafted the slides, and drew the schematic. I checked the work by finding the source of every number and claim, having Claude re-check every source against its claim, and running my inputs through the group's verification agent.
 
 | Project activity | GenAI used? | What GenAI did | My role | How it was checked |
 |---|---|---|---|---|
@@ -47,8 +47,8 @@ title: Story 4 – Chemical / Power-to-X (green ammonia, Ny-Ålesund)
 | Circularity | Yes | Found [9] | Kept the claim to what Umicore says | Wording checked against [9] |
 | Coding | Yes | Ran Python for the calculations and the slide build | Reviewed the outputs | Results matched the verification agent |
 | Figures | Yes | Drew the system schematic; built the slides | Chose the layout and switched from poster to four slides | Labels checked against the calculations |
-| Writing | Yes | Drafted slide text and the talk script | Edited; cut sources from 18 to 9 to fit the slides | Each claim checked against its citation |
-| Other | Yes | Explained the group's verification agent and what to enter in each box | Entered and saved my story; fixed the boxes it flagged | All checks pass in the agent |
+| Writing | Yes | Drafted slide text | Edited; Helped draft writing for the slides | Each claim checked against its citation |
+| Other | Yes | Explained the group's verification agent and helped calculate some inputs | Entered and saved my story; fixed the boxes it flagged | All checks pass in the agent |
 
 ### Errors in GenAI output that were found and corrected
 
