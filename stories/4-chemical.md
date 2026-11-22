@@ -41,7 +41,7 @@ title: Story 4 – Chemical / Power-to-X (green ammonia, Ny-Ålesund)
 | Modelling | Yes | Calculated round trip, CAPEX, O&M, LCOS, NPV, diesel savings and GWP | Chose the discount rate, lifetime and ranges to match the group | Recalculated by the group's verification agent within ±3% |
 | Technical assessment | Yes | Worked out round-trip and engine efficiency | Questioned the engine efficiency source | ≈25% compared with Wevers' 27.4% [8] |
 | Economic assessment | Yes | Converted costs to 2026 euros; found the Svalbard diesel price | Asked where the CAPEX figures came from | Rebuilt from [4] and checked by the agent |
-| LCA | Yes | Sized the tank steel; calculated GWP and emissions avoided | Entered the inputs into the agent | Agent GWP 8.58 kg CO₂e/MWh matched |
+| LCA | Yes | Sized the tank steel; calculated GWP and emissions avoided | Redid any calculations by hand | Agent GWP 8.58 kg CO₂e/MWh matched |
 | Circularity | Yes | Found [9] | Kept the claim to what Umicore says | Wording checked against [9] |
 | Coding | Yes | Ran Python for the calculations and the slide build | Reviewed the outputs | Results matched the verification agent |
 | Figures | Yes | Drew the system schematic; built the slides | Chose the layout and switched from poster to four slides | Labels checked against the calculations |
