@@ -12,7 +12,8 @@ import sys
 # ----------------------------------------------------------------------------- inputs
 P_MW = 500
 INPUTS = {
-    # --- economics (2025 EUR, real)
+    # --- economics (2026 EUR, real; group basis)
+    "inflation_2025_to_2026": 1.025,  # ASSUMPTION ~2.5 %: euro-area HICP 2026 monthly rates 1.7-4.0 % (Eurostat); agreed group factor
     "capex_eur_per_kw": 1200,   # Limberg III analogue: EUR 572M / 480 MW = EUR 1,192/kW (existing reservoirs, underground). Power Technology 2025
     "capex_low": 900, "capex_high": 1800,  # range
     "fixed_om_eur_per_kw_yr": 17.0,  # PNNL 2022: PSH fixed O&M incl. refurbishment $15.6 (1000 MW) - $28.2 (100 MW)/kW-yr
@@ -38,8 +39,10 @@ def pv(cash, year, r):
 
 
 def economics(gen_mwh_yr, margin_eur_yr, capex_kw, r, years, inp=INPUTS):
-    capex = capex_kw * P_MW * 1e3
-    om = inp["fixed_om_eur_per_kw_yr"] * P_MW * 1e3 + inp["var_om_eur_per_mwh"] * gen_mwh_yr
+    f = inp["inflation_2025_to_2026"]       # 2025 EUR inputs -> 2026 EUR
+    capex = capex_kw * P_MW * 1e3 * f
+    margin_eur_yr = margin_eur_yr * f
+    om = (inp["fixed_om_eur_per_kw_yr"] * P_MW * 1e3 + inp["var_om_eur_per_mwh"] * gen_mwh_yr) * f
     pv_om = sum(pv(om, t, r) for t in range(1, years + 1))
     pv_repl, pv_resid = 0.0, 0.0
     for name, (share, life) in inp["split"].items():
@@ -73,9 +76,9 @@ def economics(gen_mwh_yr, margin_eur_yr, capex_kw, r, years, inp=INPUTS):
 LCA_INV = [
     # name, quantity, unit, kgCO2e per unit, stage, note
     ("Concrete (caverns, intakes, plugs, shotcrete)", 115_000, "t", 130.0, "A1-A3", "~48,000 m3 x 2.4 t/m3 (no new headrace or reservoir intake); ICE v3 general concrete ~0.13 kgCO2e/kg"),
-    ("Reinforcing steel & rock bolts", 3_900, "t", 1990.0, "A1-A3", "ICE v3 rebar, world avg ~1.99 kgCO2e/kg"),
-    ("Steel lining, pressure shaft & manifold", 2_000, "t", 2460.0, "A1-A3", "300 m x D5.5 m x 40 mm + manifold; ICE v3 steel plate ~2.46"),
-    ("Electromechanical equipment (steel)", 3_000, "t", 2460.0, "A1-A3", "2 units x ~1,500 t; fabricated steel, plate factor used"),
+    ("Reinforcing steel & rock bolts", 3_900, "t", 1920.0, "A1-A3", "Group steel factor 1.92 kgCO2e/kg (ICE v3)"),
+    ("Steel lining, pressure shaft & manifold", 2_000, "t", 1920.0, "A1-A3", "300 m x D5.5 m x 40 mm + manifold; group steel factor 1.92"),
+    ("Electromechanical equipment (steel)", 3_000, "t", 1920.0, "A1-A3", "2 units x ~1,500 t; group steel factor 1.92"),
     ("Copper (generator windings, transformers, cables)", 300, "t", 2710.0, "A1-A3", "ICE v3 copper ~2.71 kgCO2e/kg"),
     ("Transformer oil", 140, "t", 1000.0, "A1-A3", "ASSUMPTION ~1.0 kgCO2e/kg"),
     ("Explosives for rock excavation", 460, "t", 2000.0, "A5", "230,000 m3 x 2 kg/m3; ASSUMPTION ~2 kgCO2e/kg (ammonium-nitrate based)"),
@@ -97,7 +100,7 @@ def lca(gen_mwh_yr, life_years):
         t = q * ef / 1000  # tCO2e
         rows.append((name, stage, t))
         tot += t
-    em_steel = 3000 * 2.46
+    em_steel = 3000 * 1.92
     copper_oil = 300 * 2.71 + 140 * 1.0
 
     def n_events(interval):  # replacements strictly inside the assessment period
@@ -139,7 +142,7 @@ def main():
     json.dump(out, open("econ_lca_results.json", "w"), indent=2, default=float)
 
     b = out["base"]
-    print(f"BASE CASE ({n} y, {r:.0%}, EUR 1,200/kW)")
+    print(f"BASE CASE ({n} y, {r:.0%}, EUR 1,200/kW in 2025 EUR, results in 2026 EUR)")
     for k, v in b.items():
         print(f"  {k:40s} {v:10.2f}")
     print("\nSENSITIVITY            LCOS EUR/MWh   NPV w/ arbitrage MEUR")
