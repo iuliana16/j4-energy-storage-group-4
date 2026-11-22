@@ -29,7 +29,7 @@ title: Story 4 – Chemical / Power-to-X (green ammonia, Ny-Ålesund)
 
 *Tool:* Claude (Anthropic), accessed through the Claude app with web search, file handling and code execution, November 2026.
 
-*How it was used:* Claude found potential sources, ran the potential sizing, cost and emissions calculations, drafted the slides, and drew the schematic. I checked the work by finding the source of every number and claim, having Claude re-check every source against its claim, and running my inputs through the group's verification agent.
+*How it was used:* Claude found potential sources, ran the potential sizing, cost and emissions calculations, drafted initial slide design, and drew the schematic. I checked the work by finding the source of every number and claim and redoing any calculations by hand. Claude also re-checked every source against its claim, and running my inputs through the group's verification agent.
 
 | Project activity | GenAI used? | What GenAI did | My role | How it was checked |
 |---|---|---|---|---|
