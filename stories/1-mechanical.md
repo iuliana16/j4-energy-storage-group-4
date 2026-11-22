@@ -23,16 +23,16 @@ Numbers match the superscripts on the slides.
 | 7 | ANDRITZ, [Limberg III data sheet](https://www.andritz.com/resource/blob/513340/ae8b76d862ba225e3da94a9fe214b500/14-austria-limberg-data.pdf) | Variable-speed pump-turbines (DFIM), 2 × 240 MW: model for our 2 × 250 MW design |
 | 8 | Richter, Vereide & Zenz (2022), [Solutions for upgrading the hydraulic system of Tonstad HPP](https://graz.pure.elsevier.com/files/48751653/Richter_et_al_2022_Solutions_for_Upgrading_the_Hydraulic_System_of_Tonstad_HPP.pdf) | Tonstad's ~29 km tunnel from Ousdalsvatn and Homstølvatn; tapping in is feasible; main risk is low pressure in sand traps and surge tanks |
 | 9 | NVE, [Report 57/2017](https://publikasjoner.nve.no/rapport/2017/rapport2017_57.pdf) | Sirdalsvatnet level and area, used to calculate the ~20 cm level swing |
-| 10 | Power Technology (2025), [Limberg III](https://www.power-technology.com/marketdata/power-plant-profile-limberg-iii-austria/); VERBUND, [Limberg III](https://power.verbund.com/de/Limberg-III) | Build-cost benchmark: €572 M for 480 MW ≈ €1,200/kW |
+| 10 | Power Technology (2025), [Limberg III](https://www.power-technology.com/marketdata/power-plant-profile-limberg-iii-austria/); VERBUND, [Limberg III](https://power.verbund.com/de/Limberg-III) | Build-cost benchmark: €572 M for 480 MW ≈ €1,200/kW (2025 EUR; €615 M for our plant in 2026 EUR) |
 | 11 | PNNL (2022), [Energy Storage Grand Challenge Cost and Performance Assessment](https://www.sandia.gov/app/uploads/sites/256/2024/02/ESGC-Cost-Performance-Report-2022-PNNL-33283.pdf); PNNL, [PSH cost methodology](https://www.pnnl.gov/sites/default/files/media/file/PSH_Methodology_0.pdf) | Fixed running costs $15.6–28.2/kW-yr (we used €17); rotor and stator refurbishment every ~20 years |
-| 12 | NREL, life-cycle assessment of closed-loop pumped storage, summarised by [US DOE (2023)](https://www.energy.gov/cmei/water/articles/study-examines-sustainability-new-closed-loop-pumped-storage-hydropower); Circular Ecology, [ICE database v3](https://circularecology.com/embodied-carbon-footprint-database.html) | 80–100 year life; lowest climate impact of the storage types compared. ICE: carbon per kg of concrete, steel and copper |
+| 12 | NREL, life-cycle assessment of closed-loop pumped storage, summarised by [US DOE (2023)](https://www.energy.gov/cmei/water/articles/study-examines-sustainability-new-closed-loop-pumped-storage-hydropower); Circular Ecology, [ICE database v3](https://circularecology.com/embodied-carbon-footprint-database.html) | 80–100 year life; lowest climate impact of the storage types compared. ICE: carbon per kg of concrete and copper; steel at the group factor of 1.92 kg CO₂e/kg |
 | 13 | Statnett (2026), [Rapport fra systemansvarlig 2025](https://www.statnett.no/globalassets/for-aktorer-i-kraftsystemet/systemansvaret/arsrapporter-fra-systemansvarlig/rapport-fra-systemansvarlig-2025.pdf) | Size of Norway's frequency-reserve market (FCR-N ~€39 M in 2025) |
 | 14 | TunnelTalk (2018), [Using aggregates from tunnel excavations](https://tunneltalk.com/TunnelTECH-Oct2018-Using-aggregates-from-tunnel-excavations.php); SINTEF, [Kortreist stein](https://www.sintef.no/globalassets/project/kortreist-stein/012-kortreist-stein-sota-h3-endelig.pdf) | Tunnel rock crushed into concrete sand in Norway (Ryfast, E39) |
 | 15 | World Steel Association (2018), [Raw materials fact sheet](https://steel.org.au/getattachment/458fa31b-2586-47bb-a645-9411140863dd/WSA_fact_raw_materials_2018.pdf) | Steel recovery rates: 90% machinery, 85% construction |
 
-**Used in the model, not on the slides:** ECB 2025 average exchange rate (1.130 USD/EUR, via Bank of Finland); BEIS 2020 road-freight factor 0.1065 kg CO₂e/t·km (via IStructE 2020).
+**Used in the model, not on the slides:** ECB 2025 average exchange rate (1.130 USD/EUR, via Bank of Finland); BEIS 2020 road-freight factor 0.1065 kg CO₂e/t·km (via IStructE 2020); euro-area inflation 2025→2026 of ~2.5% ([Eurostat](https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-19012026-ap), group-agreed factor) to put all costs in 2026 EUR.
 
-**Own model (not from a source):** the 500 MW / 8 h sizing, 160 cycles and 639 GWh/yr, €33 M/yr earnings, €89/MWh cost, the ~€24 M/yr gap and the 3.1 g CO₂e/kWh estimate. Code and tests: [story-1-model](https://github.com/iuliana16/j4-energy-storage-group-4/tree/main/story-1-model).
+**Own model (not from a source):** the 500 MW / 8 h sizing, 160 cycles and 639 GWh/yr, €33.8 M/yr earnings, €91/MWh cost, the ~€24.5 M/yr gap and the 2.9 g CO₂e/kWh estimate (costs in 2026 EUR). Code and tests: [story-1-model](https://github.com/iuliana16/j4-energy-storage-group-4/tree/main/story-1-model).
 
 ## GenAI declaration
 
@@ -50,7 +50,7 @@ Numbers match the superscripts on the slides.
 | Modelling | Yes | Wrote the Python dispatch, economics and LCA models | Directed the scope; asked for each result to be explained in plain terms | 9 automated tests against hand calculations |
 | Technical assessment | Yes | Built the efficiency chain (75%) | Asked for 75% to be cited to a real source; checked the 2012 Teknisk Ukeblad article myself | Sira-Kvina's 2012 Tonstad plan (75–80%); NVE 57/2017 |
 | Economic assessment | Yes | Found benchmarks; calculated cost per MWh, NPV and sensitivities | Based costs on a real comparable project (Limberg III); chose 7% / 20 years to match the group | Values traced to sources; eight sensitivities |
-| LCA | Yes | Estimated materials from the design and applied ICE factors | Asked for the LCA to be easier to follow and every estimate labelled; questioned the NREL source when it would not open | ICE v3; doubling concrete or steel stays under 5 g/kWh |
+| LCA | Yes | Estimated materials from the design and applied ICE factors | Asked for the LCA to be easier to follow and every estimate labelled; questioned the NREL source when it would not open | ICE v3 and the group steel factor (1.92); doubling concrete or steel stays under 5 g/kWh |
 | Circularity | Yes | Drafted end-of-life and reuse points | Asked for each point to be backed by a source | PNNL, NREL, TunnelTalk, worldsteel |
 | Coding | Yes | All Python code, including the slide-building script | Reviewed results and directed changes | Tests passed; slides validated and checked visually |
 | Figures | Yes | Plotting code, schematic and simplified map | Supplied the machine-hall photo and its source; asked for the schematic to be enlarged and simplified | Chart data from ENTSO-E or model outputs only |
@@ -79,7 +79,7 @@ Numbers match the superscripts on the slides.
 | Balancing markets could close the cost gap | Statnett (2026): whole FCR-N market ~€39 M | Verdict revised |
 | Wrong Olympios link; variable speed cited to Pitorac; "60+ year life" | Source-by-source check | Correct link; ANDRITZ; "~60-year life" |
 | "Shelved because prices were too flat"; peak hours | Article and chart re-checked | Only the timing stated; peaks ~08:00 and 17:00–20:00 |
-| Machine refurbishment at 40 years only | PNNL: every ~20 years | 3.1 g unchanged; 0.93 g over 80 years |
+| Machine refurbishment at 40 years only | PNNL: every ~20 years | 20-year result unchanged; 80-year result updated |
 | Liquid-air efficiency, exchange rate, road-freight factor, steel sensitivity | Olympios et al., ECB, BEIS | Corrected |
 
 ### My own verification
